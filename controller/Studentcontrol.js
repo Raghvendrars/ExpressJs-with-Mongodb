@@ -2,7 +2,6 @@ const Student = require("../models/Student");
 const Stud = require("../models/Student");
 const { body, validationResult } = require('express-validator');
 
-
 // View Data
 module.exports.StudentData = async (req, res) => {
   res.json(await Student.find());
@@ -24,9 +23,7 @@ module.exports.StudentPostdata = async (req, res) => {
   res.json(st1);
 };
 
-
-
-
+// To update the data
 module.exports.StudentDataUpdate = async (req, res) => {
   const Sdata = await Student.findById(req.params.id);
   Sdata.fullname = req.body.fullname;
