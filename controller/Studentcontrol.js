@@ -1,6 +1,6 @@
 const Student = require("../models/Student");
 const Stud = require("../models/Student");
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require("express-validator");
 
 // View Data
 module.exports.StudentData = async (req, res) => {
@@ -14,13 +14,16 @@ module.exports.StudentDataById = async (req, res) => {
 
 // Add data
 module.exports.StudentPostdata = async (req, res) => {
-  const Sdata = new Stud({
-    fullname: req.body.fullname,
-    mobile: req.body.mobile,
-  });
-
-  const st1 = await Sdata.save();
-  res.json(st1);
+  try {
+    const Sdata = new Stud({
+      fullname: req.body.fullname,
+      mobile: req.body.mobile,
+    });
+    const st1 = await Sdata.save();
+    res.json(st1);
+  } catch (error) {
+    console.log("This error" + error.name);
+  }
 };
 
 // To update the data
